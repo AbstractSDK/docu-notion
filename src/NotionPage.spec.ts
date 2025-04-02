@@ -78,6 +78,11 @@ describe("NotionPage", () => {
           time_zone: null,
         },
       },
+      number_property: {
+        "id": "WPj%5E",
+        type: "number",
+        number: 42
+      }
     },
     url: "https://www.notion.so/Site-docu-notion-PAGEID",
   };
@@ -109,6 +114,36 @@ describe("NotionPage", () => {
       const result = page.getPlainTextProperty("nonexistent", "Default Value");
 
       expect(result).toBe("Default Value");
+    });
+  });
+
+  describe("getNumberProperty", () => {
+    it("should return the plain text value of a property", () => {
+      const page = new NotionPage({
+        layoutContext: "Test Context",
+        pageId: "123",
+        order: 1,
+        metadata: mockMetadata,
+        foundDirectlyInOutline: true,
+      });
+
+      const result = page.getNumberProperty("number_property", 0);
+
+      expect(result).toBe(42);
+    });
+
+    it("should return the default value if the property is not found", () => {
+      const page = new NotionPage({
+        layoutContext: "Test Context",
+        pageId: "123",
+        order: 1,
+        metadata: mockMetadata,
+        foundDirectlyInOutline: true,
+      });
+
+      const result = page.getNumberProperty("nonexistent", 0);
+
+      expect(result).toBe(0);
     });
   });
 

@@ -137,6 +137,16 @@ export class NotionPage {
     return this.getSelectProperty("Status");
   }
 
+  public get sidebarPosition(): number | undefined {
+    return this.getNumberProperty("sidebar_position", 0) || this.getNumberProperty("Sidebar Position", 0);
+  }
+
+  public getNumberProperty(property: string, defaultIfEmpty: number): number {
+    const p = (this.metadata as any).properties?.[property];
+    if (!p) return defaultIfEmpty;
+    return p.number || defaultIfEmpty;
+  }
+
   public getPlainTextProperty(
     property: string,
     defaultIfEmpty: string
@@ -170,10 +180,8 @@ export class NotionPage {
     //console.log("metadata:\n" + JSON.stringify(this.metadata, null, 2));
     const p = (this.metadata as any).properties?.[property];
 
-    //console.log(`prop ${property} = ${JSON.stringify(p)}`);
     if (!p) return defaultIfEmpty;
     const textArray = p[p.type];
-    //console.log("textarray:" + JSON.stringify(textArray, null, 2));
     return textArray && textArray.length
       ? (textArray
           .map((item: { plain_text: any }) => item.plain_text)

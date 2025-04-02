@@ -267,7 +267,7 @@ function registerNotionToMarkdownCustomTransforms(
 function getFrontMatter(page: NotionPage): string {
   let frontmatter = "---\n";
   frontmatter += `title: ${page.nameOrTitle.replaceAll(":", "-")}\n`; // I have not found a way to escape colons
-  frontmatter += `sidebar_position: ${page.order}\n`;
+  frontmatter += `sidebar_position: ${page.sidebarPosition || page.order}\n`;
   frontmatter += `slug: ${page.slug ?? ""}\n`;
   if (page.keywords) frontmatter += `keywords: [${page.keywords}]\n`;
 
