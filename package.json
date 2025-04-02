@@ -19,7 +19,7 @@
     "pull-sample": "npm run ts -- -n $DOCU_NOTION_INTEGRATION_TOKEN -r $DOCU_NOTION_SAMPLE_ROOT_PAGE -m ./sample --locales en,es,fr,de --log-level verbose",
     "pull-sample-with-paths": "npm run ts -- -n $DOCU_NOTION_INTEGRATION_TOKEN -r $DOCU_NOTION_SAMPLE_ROOT_PAGE -m ./sample --img-output-path ./sample_img",
     "lint": "eslint . --ext .ts",
-    "prepare": "build-only"
+    "prepare": "npm run build-only"
   },
   "//file-type": "have to use this version before they switched to ESM, which gives a compile error related to require()",
   "//chalk@4": "also ESM related problem",
@@ -64,7 +64,7 @@
     "vite": "^4.2.1",
     "vitest": "^0.30.1"
   },
-  "name": "@sillsdev/docu-notion",
+  "name": "@abstract-money/docu-notion",
   "description": "Download Notion pages as markdown and image files, preserving hierarchy and enabling workflow properties. Works with Docusaurus.",
   "license": "MIT",
   "author": {
