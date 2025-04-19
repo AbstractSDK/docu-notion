@@ -12,14 +12,15 @@ export class HierarchicalNamedLayoutStrategy extends LayoutStrategy {
     dirRoot: string,
     order: number,
     context: string,
-    levelLabel: string
+    levelLabel: string,
+    collapsed?: boolean
   ): string {
     const path = context + "/" + sanitize(levelLabel).replaceAll(" ", "-");
 
     //console.log("Creating level " + path);
     const newPath = dirRoot + "/" + path;
     fs.mkdirSync(newPath, { recursive: true });
-    this.addCategoryMetadata(newPath, order, levelLabel);
+    this.addCategoryMetadata(newPath, order, levelLabel, collapsed);
     return path;
   }
 
@@ -57,8 +58,8 @@ export class HierarchicalNamedLayoutStrategy extends LayoutStrategy {
   //     "description": "This description can be used in the swizzled DocCard"
   //   }
   // }
-  private addCategoryMetadata(dir: string, order: number, label: string) {
-    const data = `{"position":${order}, "label":"${label}"}`;
+  private addCategoryMetadata(dir: string, order: number, label: string, collapsed?: boolean) {
+    const data = `{"position":${order}, "label":"${label}"${!collapsed ? ', "collapsed": false': ''}}`;
     fs.writeFileSync(dir + "/_category_.json", data);
   }
 }

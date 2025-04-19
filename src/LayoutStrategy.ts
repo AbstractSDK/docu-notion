@@ -26,7 +26,8 @@ export abstract class LayoutStrategy {
     rootDir: string,
     order: number,
     context: string,
-    levelLabel: string
+    levelLabel: string,
+    collapsed?: boolean
   ): string;
   public abstract getPathForPage(
     page: NotionPage,

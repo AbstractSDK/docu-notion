@@ -13,8 +13,8 @@ import { NotionPage } from "./NotionPage";
 export class FlatGuidLayoutStrategy extends LayoutStrategy {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public newLevel(
-    rootDir: string,
-    order: number,
+    _rootDir: string,
+    _order: number,
     context: string,
     _levelLabel: string
   ): string {

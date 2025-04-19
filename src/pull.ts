@@ -246,7 +246,9 @@ async function getPagesRecursively(
         options.markdownOutputPath,
         pageInTheOutline.order,
         incomingContext,
-        pageInTheOutline.nameOrTitle
+        pageInTheOutline.nameOrTitle,
+        // Default to collapsed
+        pageInTheOutline.getCheckboxProperty('uncollapsed', true)
       );
     }
     for (const childPageInfo of pageInfo.childPageIdsAndOrder) {

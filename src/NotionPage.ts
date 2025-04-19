@@ -247,6 +247,24 @@ export class NotionPage {
     }
   }
 
+  public getCheckboxProperty(property: string, defaultIfEmpty: boolean = false): boolean {
+    /* Notion checkbox values look like this
+     "properties": {
+        "IsComplete": {
+          "id": "xyz123",
+          "type": "checkbox",
+          "checkbox": true
+        }
+      }
+    */
+
+    const p = (this.metadata as any).properties?.[property];
+    if (!p) return defaultIfEmpty;
+
+    // The checkbox property contains a boolean value directly
+    return typeof p.checkbox === 'boolean' ? p.checkbox : defaultIfEmpty;
+  }
+
   public async getContentInfo(
     children: ListBlockChildrenResponseResults
   ): Promise<{

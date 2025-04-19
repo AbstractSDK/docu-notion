@@ -82,6 +82,11 @@ describe("NotionPage", () => {
         "id": "WPj%5E",
         type: "number",
         number: 42
+      },
+      checkbox_property: {
+        id: "xyz123",
+        type: "checkbox",
+        checkbox: true
       }
     },
     url: "https://www.notion.so/Site-docu-notion-PAGEID",
@@ -144,6 +149,36 @@ describe("NotionPage", () => {
       const result = page.getNumberProperty("nonexistent", 0);
 
       expect(result).toBe(0);
+    });
+  });
+
+  describe("getCheckboxProperty", () => {
+    it("should return the checkbox value of a property", () => {
+      const page = new NotionPage({
+        layoutContext: "Test Context",
+        pageId: "123",
+        order: 1,
+        metadata: mockMetadata,
+        foundDirectlyInOutline: true,
+      });
+
+      const result = page.getCheckboxProperty("checkbox_property", false);
+
+      expect(result).toBe(true);
+    });
+
+    it("should return the default value if the property is not found", () => {
+      const page = new NotionPage({
+        layoutContext: "Test Context",
+        pageId: "123",
+        order: 1,
+        metadata: mockMetadata,
+        foundDirectlyInOutline: true,
+      });
+
+      const result = page.getCheckboxProperty("nonexistent", false);
+
+      expect(result).toBe(false);
     });
   });
 
