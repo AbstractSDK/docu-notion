@@ -25,7 +25,7 @@
   "//chalk@4": "also ESM related problem",
   "//notion-client@4": "also ESM related problem",
   "//note: ts-node": "really is a runtime dependency",
-  "version": "0.17.17",
+  "version": "0.17.18",
   "dependencies": {
     "@notionhq/client": "2.2.3",
     "axios": "^1.6.8",
